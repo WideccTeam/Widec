@@ -72,7 +72,7 @@ public class AppController {
     }
     
     /*
-     * This method will log if exists user
+     * This method will will send a new user to the register view
      */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView registerUser(){
@@ -93,6 +93,22 @@ public class AppController {
         User newUser = new User();
         newUser = userService.findUserByEmail(user.getEmail());
         Preferences userPreferences = preferencesService.findById(newUser.getId());
+        model.addAttribute("user", newUser);
+        model.addAttribute("userPreferences", userPreferences);
+        
+        //Esto hay que cambiarlo a 'test'
+        return "userInfo";
+    }
+    
+    
+    /*
+     * This method will save preferences of a user
+     */
+    @RequestMapping(value = "/test.html", method = RequestMethod.POST)
+    public String newUserPreferences(Preferences userPreferences, ModelMap model) {
+    	preferencesService.saveUserPreferences(userPreferences);
+        User newUser = new User();
+        newUser = userService.findById(userPreferences.getId());
         model.addAttribute("user", newUser);
         model.addAttribute("userPreferences", userPreferences);
         return "userInfo";

@@ -15,6 +15,7 @@
         <mockito.version>1.10.19</mockito.version>
         <h2.version>1.4.187</h2.version>
         <dbunit.version>2.2</dbunit.version>
+		<jackson.version>2.9.6</jackson.version>
     </properties>
  
     <dependencies>
@@ -74,6 +75,14 @@
 		 	<artifactId>spring-security-config</artifactId>
 		 	<version>${spring.security.version}</version>
 		 </dependency>
+		 
+		 
+        <!-- Json -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
  
         <!-- Hibernate -->
         <dependency>

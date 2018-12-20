@@ -12,7 +12,6 @@ import javax.persistence.Table;
 public class Preferences {
  
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
  
     @Column(name = "Formato")

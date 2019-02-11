@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -17,7 +18,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.widec.model.Preferences;
 import com.widec.model.User;
+import com.widec.model.UserAndPreferences;
 import com.widec.service.PreferencesService;
+import com.widec.service.UserAndPreferencesService;
 import com.widec.service.UserService;
  
 @Controller
@@ -30,6 +33,9 @@ public class AppController {
     
     @Autowired
     PreferencesService preferencesService;
+
+    @Autowired
+    UserAndPreferencesService userAndPreferencesService;
      
     @Autowired
     MessageSource messageSource;
@@ -143,9 +149,11 @@ public class AppController {
  
     
     @RequestMapping(value = "/reportListTable.html")
-	public @ResponseBody List<User> table() {
-    	List<User> users = userService.findAllUsers();
-		return users;
+	public @ResponseBody List<UserAndPreferences> table() {
+    	
+    	//Aqui lo que me falla es que no sé como pasar el usuario actual y tal y pascual
+    	List<UserAndPreferences> users = userAndPreferencesService.findAllUsers();
+    	return users;
 	}
  
 }

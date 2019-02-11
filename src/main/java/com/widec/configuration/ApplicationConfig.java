@@ -1,6 +1,7 @@
 package com.widec.configuration;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -43,9 +45,16 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     }
     
 
-    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add((HttpMessageConverter<?>) objectMapper());
-    }
+    @Bean
+	public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
+		final RequestMappingHandlerAdapter adapter = new RequestMappingHandlerAdapter();
+		final List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
+		final MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+		mappingJackson2HttpMessageConverter.setObjectMapper(this.objectMapper().getObject());
+		messageConverters.add(mappingJackson2HttpMessageConverter);
+		adapter.setMessageConverters(messageConverters);
+		return adapter;
+	}
     
     @Bean(name = "objectMapper")
 	public Jackson2ObjectMapperFactoryBean objectMapper() {

@@ -75,28 +75,14 @@
             </div>
             
             <div class="col-md-4">
-            	<table id="example" class="display" style="width:100%">
+            	<table id="example" class="display" >
 			        <thead>
 			            <tr>
-			                <th>Nsdgfsdgsgame</th>
-			                <th>Position</th>
-			                <th>Office</th>
-			                <th>Age</th>
-			                <th>Start date</th>
-			                <th>Salary</th>
+			                <th>name</th>
+			                <th>genre</th>
 			            </tr>
 			        </thead>
-			        <tbody>
-			            <tr>
-			                <td>Tiger Nixon</td>
-			                <td>System Architect</td>
-			                <td>Edinburgh</td>
-			                <td>61</td>
-			                <td>2011/04/25</td>
-			                <td>$320,800</td>
-			            </tr>
-		            </tbody>
-	            </table>
+			    </table>
 			</div>
         </div>
     </div>

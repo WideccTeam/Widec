@@ -5,4 +5,6 @@ import com.widec.model.Preferences;
 
 public interface PreferencesService {
 	Preferences findById(int id);
+	
+    void saveUserPreferences(Preferences userPreferences);
 }

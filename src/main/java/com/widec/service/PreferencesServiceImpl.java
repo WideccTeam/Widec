@@ -17,5 +17,10 @@ public class PreferencesServiceImpl implements PreferencesService {
     public Preferences findById(int id) {
         return preferencesDao.findById(id);
     }
+
+	@Override
+	public void saveUserPreferences(Preferences userPreferences) {
+		preferencesDao.saveUserPreferences(userPreferences);
+	}
      
 }

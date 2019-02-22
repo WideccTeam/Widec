@@ -80,6 +80,7 @@
 			            <tr>
 			                <th>name</th>
 			                <th>genre</th>
+			                <th>Invitar</th>
 			            </tr>
 			        </thead>
 			    </table>

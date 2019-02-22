@@ -11,7 +11,15 @@ $(document).ready(function() {
                 data : "name"
             }, {
                 data : "genre"
+            },
+            {
+            	"defaultContent": "<button>Click!</button>"
             }
         ]
     } );
+	
+	$('#example tbody').on( 'click', 'button', function () {
+		 console.log( $('#example').dataTable().data(this)/*rows( this )/*.data()*/ );
+    } );
+	
 } );

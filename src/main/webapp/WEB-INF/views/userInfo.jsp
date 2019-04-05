@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html lang="en">
 
@@ -16,9 +18,13 @@
   	
   	<link rel="stylesheet" href="<c:url value='/css/datatables.min.css' />">
   	
+  	
   	<script type="text/javascript" charset="utf8" src="<c:url value='/js/jquery.min.js' />"></script>
   	<script type="text/javascript" charset="utf8" src="<c:url value='/js/datatables.min.js' />"></script>
+ 	<script type="text/javascript" charset="utf8" src="<c:url value='/js/bootstrap.min.js' />"></script>
  	<script type="text/javascript" charset="utf8" src="<c:url value='/js/views/userInfoJS.js' />"></script>
+
+
 
     <title>Widec</title>
 </head>
@@ -30,11 +36,14 @@
             <img src="<c:url value='/css/images/LogoWIDEC.png' />" alt="">
         </nav>
 
+		
+
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-6 text-center">
                         <h2>${user.name}</h2>
+                        <!-- <button data-toggle='modal' data-target='#myNotificationsModal' class='button'>Mis mensajes</button> -->
                     </div>
                     <div class="col-md-6">
                         <img id="perfil" src="img/Perfil_hexagono.png" alt="">
@@ -73,13 +82,12 @@
             <div class="col-md-4">
                 <img id="jugar" src="<c:url value='/css/images/BotonJugar02.png' />" alt="" class="mx-auto d-block">
             </div>
-            
             <div class="col-md-4">
             	<table id="example" class="display" >
 			        <thead>
 			            <tr>
-			                <th>name</th>
-			                <th>genre</th>
+			                <th>Nombre</th>
+			                <th>Genero</th>
 			                <th>Invitar</th>
 			            </tr>
 			        </thead>
@@ -87,8 +95,16 @@
 			</div>
         </div>
     </div>
+    
+ <!-- 
+ 			IMPORTANTE
+ Hay que mirar a ver como hacer con el puto controlador y tal que me esta tocando los cojones
+ 
+  -->
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS 
+	<%@include file="notification.jsp" %>
+
+     <!--jQuery first, then Popper.js, then Bootstrap JS 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"

@@ -2,16 +2,18 @@ package com.widec.controller;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.RedirectView;
@@ -19,9 +21,11 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.widec.model.Preferences;
 import com.widec.model.User;
 import com.widec.model.UserAndPreferences;
+import com.widec.service.NotificationService;
 import com.widec.service.PreferencesService;
 import com.widec.service.UserAndPreferencesService;
 import com.widec.service.UserService;
+import com.widec.model.Notification;
  
 @Controller
 @RequestMapping("/")
@@ -36,6 +40,9 @@ public class AppController {
 
     @Autowired
     UserAndPreferencesService userAndPreferencesService;
+    
+    @Autowired
+    NotificationService notificationService;
      
     @Autowired
     MessageSource messageSource;
@@ -66,6 +73,9 @@ public class AppController {
     		Preferences userPreferences = preferencesService.findById(loggedUser.getId());
             model.addObject("user", loggedUser);
             model.addObject("userPreferences", userPreferences);
+            Notification notification = new Notification();
+            notification.setMessage("¿Quieres colaborar conmigo en una nueva partida?");
+            model.addObject("notification", notification);
             return model;
     	}
     	else{
@@ -155,5 +165,27 @@ public class AppController {
     	List<UserAndPreferences> users = userAndPreferencesService.findAllUsers();
     	return users;
 	}
+    
+    
+    /*
+     * This method will send a notification to the user selected
+     */
+    @RequestMapping(value = "/notification", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public ModelAndView notification(Notification notification){
+    	notification.setType("Invitación");
+		notificationService.saveNotification(notification);
+		
+		//ESTO ES UNA CHAPUZA, HAY QUE HACERLO SIN RECARGAR LA PAGINA Y DONE
+    	User loggedUser = userService.findUserByEmail(notification.getAuthor());
+		ModelAndView model = new ModelAndView("userInfo");
+		Preferences userPreferences = preferencesService.findById(loggedUser.getId());
+        model.addObject("user", loggedUser);
+        model.addObject("userPreferences", userPreferences);
+        Notification notification2 = new Notification();
+        notification2.setMessage("¿Quieres colaborar conmigo en una nueva partida?");
+        model.addObject("notification", notification2);
+        return model;
+    }
  
 }

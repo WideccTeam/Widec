@@ -1,3 +1,122 @@
-body,html{
-    height: 100%;
+@import url('https://fonts.googleapis.com/css?family=Cutive+Mono');
+
+html,
+body {
+  height: 100%;
+  font-size: 16px;
+  background-color: #fff;
+  font-family: 'Cutive Mono', monospace;
+}
+
+input::placeholder{
+  font-family: 'Cutive Mono', monospace;
+}
+
+a{
+  text-decoration: none;
+}
+
+ul{
+  list-style: none;
+}
+
+
+.grid {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  grid-template-rows: 110px 1fr 80px;
+  grid-gap: 0;
+}
+
+/*HEADER*/
+
+header {
+  grid-column: 1 / end;
+  grid-row: 1 / 2;
+  border-bottom: 1px solid rgba(112, 112, 112, 0.2);
+}
+
+header span{
+  width: 100%;
+	border-top: 10px solid #CBCBCB;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.logo{
+  margin: 8rem;
+}
+
+/* MAIN*/
+
+main {
+  grid-column: 2 / end;
+  grid-row: 2 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -5px 0 30px -5px rgba(0, 0, 0, 0.2);
+}
+
+/*FORMULARIO INICIO SESIÓN*/
+
+.form .relleno {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.form a{
+  font-size: 10px;
+}
+
+/*BOTONES INICIO SESIÓN Y REGISTRARSE*/
+
+.form .botones {
+  margin-top: 4rem;
+  position: absolute;
+}
+
+.cuenta {
+  font-family: 'Cutive Mono', monospace;
+  color: #989898;
+  font-size: 12px;
+}
+
+button {
+  font-family: 'Cutive Mono', monospace;
+  background-color: #fff;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+  
+.texto{
+  transform: translate(-50%, -50%);
+  position: relative;
+  top: -0.6rem;
+  left: -4rem;
+  color: #000;
+}
+
+.texto2{
+  color: #989898;
+  left: -5rem;
+}
+
+/*FOOTER*/
+
+footer {
+  grid-column: 1 / end;
+  grid-row: 3 / end;
+  border-top: 1px solid rgba(112, 112, 112, 0.2);
+}
+
+footer p{
+  font-size: 13px;
+  margin-top: 10px;
+  color: #211915;
+  text-align: center;
 }

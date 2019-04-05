@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-md-6 text-center">
                         <h2>${user.name}</h2>
-                        <!-- <button data-toggle='modal' data-target='#myNotificationsModal' class='button'>Mis mensajes</button> -->
+                        <button data-toggle='modal' data-target='#myNotificationsModal' class='button'>Mis mensajes</button>
                     </div>
                     <div class="col-md-6">
                         <img id="perfil" src="img/Perfil_hexagono.png" alt="">
@@ -103,7 +103,7 @@
   -->
 
 	<%@include file="notification.jsp" %>
-
+	<%@include file="myNotifications.jsp" %>
      <!--jQuery first, then Popper.js, then Bootstrap JS 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

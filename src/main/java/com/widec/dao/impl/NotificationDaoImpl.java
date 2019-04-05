@@ -6,11 +6,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
 import com.widec.dao.AbstractDao;
 import com.widec.dao.NotificationDao;
 import com.widec.model.Notification;
+import com.widec.model.User;
 
 
 @Repository("notificationDao")
@@ -26,6 +28,11 @@ public class NotificationDaoImpl extends AbstractDao<Integer, Notification> impl
         persist(notification);
 	}
 	
+	@Override
+	public List<Notification> findAllNotifications() {
+		Criteria criteria = createEntityCriteria();
+        return (List<Notification>) criteria.list();
+	}
 
 //	@Override
 //	public List<Notification> findNotificationsByTargetId(int targetID) {

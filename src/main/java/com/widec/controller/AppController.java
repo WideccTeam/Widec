@@ -167,6 +167,15 @@ public class AppController {
 	}
     
     
+    @RequestMapping(value = "/personalNotifications.html")
+	public @ResponseBody List<Notification> showNotifications(/*User user*/) {
+    	
+    	//Aqui lo que me falla es que no sé como pasar el usuario actual y tal y pascual
+    	//List<Notification> notifications = notificationService.findNotificationsByTargetId(4/*user.getId()*/);
+    	List<Notification> notifications = notificationService.findAllNotifications();
+    	return notifications;
+	}
+    
     /*
      * This method will send a notification to the user selected
      */

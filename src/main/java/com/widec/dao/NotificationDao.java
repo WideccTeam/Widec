@@ -11,6 +11,8 @@ public interface NotificationDao {
     
 	void  saveNotification(Notification notification);
 	
+	List<Notification> findAllNotifications();
+	
 //    List<Notification> findNotificationsByTargetId(int targetID);
 
 }

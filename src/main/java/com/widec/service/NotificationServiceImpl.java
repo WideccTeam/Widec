@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.widec.dao.NotificationDao;
 import com.widec.model.Notification;
+import com.widec.model.User;
 
 
 @Service("notificationService")
@@ -25,6 +26,11 @@ public class NotificationServiceImpl implements NotificationService{
 	public void saveNotification(Notification notification) {
 		notificationDao.saveNotification(notification);
 		
+	}
+	
+	@Override
+	public List<Notification> findAllNotifications() {
+		return notificationDao.findAllNotifications();
 	}
 
 //	@Override

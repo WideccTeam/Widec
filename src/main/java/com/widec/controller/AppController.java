@@ -171,8 +171,8 @@ public class AppController {
 	public @ResponseBody List<Notification> showNotifications(/*User user*/) {
     	
     	//Aqui lo que me falla es que no sé como pasar el usuario actual y tal y pascual
-    	//List<Notification> notifications = notificationService.findNotificationsByTargetId(4/*user.getId()*/);
-    	List<Notification> notifications = notificationService.findAllNotifications();
+    	List<Notification> notifications = notificationService.findNotificationsByTargetId(10/*user.getId()*/);
+    	//List<Notification> notifications = notificationService.findAllNotifications();
     	return notifications;
 	}
     

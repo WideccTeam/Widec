@@ -33,9 +33,9 @@ public class NotificationServiceImpl implements NotificationService{
 		return notificationDao.findAllNotifications();
 	}
 
-//	@Override
-//	public List<Notification> findNotificationsByTargetId(int targetID) {
-//		return notificationDao.findNotificationsByTargetId(targetID);
-//	}
+	@Override
+	public List<Notification> findNotificationsByTargetId(int targetID) {
+		return notificationDao.findNotificationsByTargetId(targetID);
+	}
 
 }

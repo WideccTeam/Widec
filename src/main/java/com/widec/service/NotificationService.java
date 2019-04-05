@@ -15,6 +15,6 @@ public interface NotificationService {
 
     List<Notification> findAllNotifications(); 
 
-//    List<Notification> findNotificationsByTargetId(int targetID); 
+    List<Notification> findNotificationsByTargetId(int targetID); 
     
 }

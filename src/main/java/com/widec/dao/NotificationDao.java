@@ -13,6 +13,6 @@ public interface NotificationDao {
 	
 	List<Notification> findAllNotifications();
 	
-//    List<Notification> findNotificationsByTargetId(int targetID);
+    List<Notification> findNotificationsByTargetId(int targetID);
 
 }

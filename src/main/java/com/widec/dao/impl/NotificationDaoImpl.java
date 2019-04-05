@@ -2,6 +2,8 @@ package com.widec.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -16,8 +18,12 @@ import com.widec.model.User;
 
 
 @Repository("notificationDao")
-public class NotificationDaoImpl extends AbstractDao<Integer, Notification> implements NotificationDao{
 
+public class NotificationDaoImpl extends AbstractDao<Integer, Notification> implements NotificationDao{
+	
+	@PersistenceContext
+    private EntityManager em;
+	
 	@Override
 	public Notification findById(int id) {
         return getByKey(id);
@@ -34,21 +40,21 @@ public class NotificationDaoImpl extends AbstractDao<Integer, Notification> impl
         return (List<Notification>) criteria.list();
 	}
 
-//	@Override
-//	public List<Notification> findNotificationsByTargetId(int targetID) {
-//		CriteriaBuilder criteriaBuilder = this.getEntityManager().getCriteriaBuilder();
-//		CriteriaQuery<Notification> criteria = criteriaBuilder.createQuery(Notification.class);
-//		
-//		Root<Notification> notificationRoot = criteria.from(Notification.class);
-//		criteria.select(notificationRoot);
-//		criteria.where(criteriaBuilder.equal(notificationRoot.get("targetId"), targetID));
-//		
-//		List<Notification> notifications = this.getEntityManager().createQuery(criteria).getResultList();
-//		
-//		return notifications;
-////		Criteria criteria = createEntityCriteria();
-////		//MIRAR COMO PILLAR GRUPO POR PARAMETRO
-////        return (List<Notification>) criteria.list();
-//	}
+	@Override
+	public List<Notification> findNotificationsByTargetId(int targetID) {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		CriteriaQuery<Notification> criteria = criteriaBuilder.createQuery(Notification.class);
+		
+		Root<Notification> notificationRoot = criteria.from(Notification.class);
+		criteria.select(notificationRoot);
+		criteria.where(criteriaBuilder.equal(notificationRoot.get("targetId"), targetID));
+		
+		List<Notification> notifications = em.createQuery(criteria).getResultList();
+		
+		return notifications;
+//		Criteria criteria = createEntityCriteria();
+//		//MIRAR COMO PILLAR GRUPO POR PARAMETRO
+//        return (List<Notification>) criteria.list();
+	}
 
 }
